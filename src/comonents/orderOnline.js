@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import PhoneInput from 'react-phone-number-input';
-import 'react-phone-number-input/style.css'
 
-const initialInfo = {
+
+const initialValues = {
     firstName: '',
     lastName: '',
     phone: '',
 }
 function OrderOnline() {
+    const { orderInfo, setOrderInfo } = useState(initialValues)
+
+    
     return (
         <div className='orderOnline-container'>
             <form>
@@ -17,6 +19,7 @@ function OrderOnline() {
                     type='text' 
                     name='firstName' 
                     placeholder='Enter first name'
+                    value={orderInfo.firstName}
                     min='4'
                     max='36'
                     required/>
@@ -37,7 +40,8 @@ function OrderOnline() {
                     pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                     required/>
 
-                <small>Format: 123-456-7890</small>          
+                <small>Format: 123-456-7890</small>
+                <button type='submit'>Continue</button>          
             </form>
         </div>
     )
