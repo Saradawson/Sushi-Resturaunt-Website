@@ -7,6 +7,7 @@ import OrderOnline from './comonents/orderOnline';
 import Reservations from './comonents/reservations';
 import SpecialOffers from './comonents/specialOffers';
 import ErrorPage from './comonents/ErrorPage';
+import OrderScreen from './comonents/orderScreen';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path='/' element={<Home />}/>
           <Route path='/menu' element={<Menu />}/>
           <Route path='/orderOnline' element={<OrderOnline />}/>
+          <Route path='/orderOnline/order' element={<OrderScreen/>}/>
           <Route path='/reservations' element={<Reservations />}/>
           <Route path='/specialOffers' element={<SpecialOffers />}/>
           <Route path='*' element={<ErrorPage />} />

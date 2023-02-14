@@ -19,43 +19,45 @@ function OrderOnline() {
 
     function handleSubmit(evt) {
         evt.preventDefault();
-        console.log(orderInfo);
+        
     }
 
     return (
         <div className='orderOnline-container'>
-            <form onSubmit={handleSubmit}>
-                <label>First Name</label>
-                <input 
-                    type='text' 
-                    name='firstName' 
-                    placeholder='Enter first name'
-                    onChange={handleChange}
-                    min='4'
-                    max='36'
-                    required/>
+            <Router>
+                <form onSubmit={handleSubmit}>
+                    <label>First Name</label>
+                    <input 
+                        type='text' 
+                        name='firstName' 
+                        placeholder='Enter first name'
+                        onChange={handleChange}
+                        min='4'
+                        max='36'
+                        required/>
 
-                <label>Last Name</label>
-                <input 
-                    type='text' 
-                    name='lastName' 
-                    placeholder='Enter last name'
-                    onChange={handleChange}
-                    min='1'
-                    max='36'
-                    required/>
+                    <label>Last Name</label>
+                    <input 
+                        type='text' 
+                        name='lastName' 
+                        placeholder='Enter last name'
+                        onChange={handleChange}
+                        min='1'
+                        max='36'
+                        required/>
 
-                <label>Phone Number</label>
-                <input 
-                    type="tel"  
-                    name="phone"
-                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-                    onChange={handleChange}
-                    required/>
+                    <label>Phone Number</label>
+                    <input 
+                        type="tel"  
+                        name="phone"
+                        pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                        onChange={handleChange}
+                        required/>
 
-                <small>Format: 123-456-7890</small>
-                <button type='submit'>Continue</button>          
-            </form>
+                    <small>Format: 123-456-7890</small>
+                    <button type='submit'>Continue</button>          
+                </form>
+            </Router>
         </div>
     )
 }
