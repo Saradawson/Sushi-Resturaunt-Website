@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-
 
 const initialValues = {
     firstName: '',
     lastName: '',
     phone: '',
+    order: ''
 }
+const menuItems = [
+    {id: 1, name: 'Family Feast', price: '$25.00', ordered: false},
+    {id: 2, name: 'Lunch Special', price: '$9.00', ordered: false},
+    {id: 3, name: 'Omasaka', price: '$100.00', ordered: false},
+    {id: 4, name: 'The Perfect Pair', price: '$10.00', ordered: false},
+    {id: 5, name: 'Creamy Deamy', price: '$10.00', ordered: false},
+    {id: 6, name: 'Ocean\'s Delight', price: '$10.00', ordered: false}
+]
 function OrderOnline() {
     const [orderInfo, setOrderInfo] = useState(initialValues)
 
@@ -19,12 +26,10 @@ function OrderOnline() {
 
     function handleSubmit(evt) {
         evt.preventDefault();
-        
     }
 
     return (
         <div className='orderOnline-container'>
-            <Router>
                 <form onSubmit={handleSubmit}>
                     <label>First Name</label>
                     <input 
@@ -50,14 +55,29 @@ function OrderOnline() {
                     <input 
                         type="tel"  
                         name="phone"
+                        placeholder='Enter phone number'
                         pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
                         onChange={handleChange}
                         required/>
+                        <small>Format: 123-456-7890</small>
+                    
+                    
+                    <ul>
+                        {menuItems && menuItems.map((item, index) => {
+                            return(
+                            <li key={item.id}>
+                                <label>{item.name}, {item.price}</label>
+                                <input
+                                    type='checkbox'
+                                    checked={item.ordered}
+                                     />
+                            </li>
+                            )
+                        })}
+                    </ul>
 
-                    <small>Format: 123-456-7890</small>
-                    <button type='submit'>Continue</button>          
+                    <button type='submit'>Continue</button>
                 </form>
-            </Router>
         </div>
     )
 }
