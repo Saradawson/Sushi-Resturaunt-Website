@@ -4,28 +4,35 @@ const initialValues = {
     firstName: '',
     lastName: '',
     phone: '',
-    order: ''
 }
 const menuItems = [
-    {id: 1, name: 'Family Feast', price: '$25.00', ordered: false},
-    {id: 2, name: 'Lunch Special', price: '$9.00', ordered: false},
-    {id: 3, name: 'Omasaka', price: '$100.00', ordered: false},
-    {id: 4, name: 'The Perfect Pair', price: '$10.00', ordered: false},
-    {id: 5, name: 'Creamy Deamy', price: '$10.00', ordered: false},
-    {id: 6, name: 'Ocean\'s Delight', price: '$10.00', ordered: false}
+    {id: 0, name: 'Family Feast', price: '$25.00', ordered: false},
+    {id: 1, name: 'Lunch Special', price: '$9.00', ordered: false},
+    {id: 2, name: 'Omasaka', price: '$100.00', ordered: false},
+    {id: 3, name: 'The Perfect Pair', price: '$10.00', ordered: false},
+    {id: 4, name: 'Creamy Deamy', price: '$10.00', ordered: false},
+    {id: 5, name: 'Ocean\'s Delight', price: '$10.00', ordered: false}
 ]
 function OrderOnline() {
     const [orderInfo, setOrderInfo] = useState(initialValues)
-
+    const [items, setItems] = useState(menuItems)
+    console.log(items)
     function handleChange(evt) {
-        const {name, value} = evt.target;
-        setOrderInfo((prev) => {
-            return {...prev, [name]: value}
-        })
+        const { name, value, type, id } = evt.target
+        if(type === 'checkbox'){
+            const item = items.findIndex((x) => x.id === +id)
+            const updatedItem = { ...items[item], ordered: evt.target.checked }
+            const newItems = [...items]
+            newItems[item] = updatedItem       
+            setItems(newItems)
+        }
+        setOrderInfo({...orderInfo, [name]: value})
     }
 
     function handleSubmit(evt) {
         evt.preventDefault();
+        const orders = items.filter((x) => x.ordered)
+        
     }
 
     return (
@@ -63,13 +70,15 @@ function OrderOnline() {
                     
                     
                     <ul>
-                        {menuItems && menuItems.map((item, index) => {
+                        {items.map((item) => {
                             return(
                             <li key={item.id}>
                                 <label>{item.name}, {item.price}</label>
                                 <input
                                     type='checkbox'
+                                    id={item.id}
                                     checked={item.ordered}
+                                    onChange={handleChange}      
                                      />
                             </li>
                             )
