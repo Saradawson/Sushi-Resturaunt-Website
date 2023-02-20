@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const initialValues = {
     firstName: '',
@@ -16,6 +17,7 @@ const menuItems = [
     {id: 5, name: 'Ocean\'s Delight', price: '10.00', ordered: false}
 ]
 function OrderOnline() {
+    const navigate = useNavigate()
     const [orderInfo, setOrderInfo] = useState(initialValues)
     const [items, setItems] = useState(menuItems)
     function handleChange(evt) {
@@ -42,7 +44,7 @@ function OrderOnline() {
         let orderString = orderArr.toString()
         orderInfo.order = orderString
         orderInfo.total = price
-        console.log(orderInfo)
+        
     }
 
     return (

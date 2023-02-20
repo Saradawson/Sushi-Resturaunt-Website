@@ -6,9 +6,11 @@ import Menu from './comonents/menu';
 import OrderOnline from './comonents/orderOnline';
 import Reservations from './comonents/reservations';
 import SpecialOffers from './comonents/specialOffers';
-import ErrorPage from './comonents/ErrorPage';
+import ErrorPage from './comonents/errorPage';
+import Orders from './comonents/orders';
 
 function App() {
+
   return (
     <div className="App">
       <Router>
@@ -28,6 +30,7 @@ function App() {
           <Route path='/orderOnline' element={<OrderOnline />}/>
           <Route path='/reservations' element={<Reservations />}/>
           <Route path='/specialOffers' element={<SpecialOffers />}/>
+          <Route path='/orders' element={<Orders />} />
           <Route path='*' element={<ErrorPage />} />
         </Routes>
       </Router>
