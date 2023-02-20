@@ -4,19 +4,20 @@ const initialValues = {
     firstName: '',
     lastName: '',
     phone: '',
+    order: [],
+    total: 0
 }
 const menuItems = [
-    {id: 0, name: 'Family Feast', price: '$25.00', ordered: false},
-    {id: 1, name: 'Lunch Special', price: '$9.00', ordered: false},
-    {id: 2, name: 'Omasaka', price: '$100.00', ordered: false},
-    {id: 3, name: 'The Perfect Pair', price: '$10.00', ordered: false},
-    {id: 4, name: 'Creamy Deamy', price: '$10.00', ordered: false},
-    {id: 5, name: 'Ocean\'s Delight', price: '$10.00', ordered: false}
+    {id: 0, name: 'Family Feast', price: '25.00', ordered: false},
+    {id: 1, name: 'Lunch Special', price: '9.00', ordered: false},
+    {id: 2, name: 'Omasaka', price: '100.00', ordered: false},
+    {id: 3, name: 'The Perfect Pair', price: '10.00', ordered: false},
+    {id: 4, name: 'Creamy Deamy', price: '10.00', ordered: false},
+    {id: 5, name: 'Ocean\'s Delight', price: '10.00', ordered: false}
 ]
 function OrderOnline() {
     const [orderInfo, setOrderInfo] = useState(initialValues)
     const [items, setItems] = useState(menuItems)
-    console.log(items)
     function handleChange(evt) {
         const { name, value, type, id } = evt.target
         if(type === 'checkbox'){
@@ -32,7 +33,13 @@ function OrderOnline() {
     function handleSubmit(evt) {
         evt.preventDefault();
         const orders = items.filter((x) => x.ordered)
-        
+        let price = 0
+        for(let i = 0; i < orders.length; i++){
+            orderInfo.order.push(orders[i].name)
+            price += parseInt(orders[i].price) 
+        }
+        orderInfo.total = price
+        console.log(orderInfo)
     }
 
     return (
