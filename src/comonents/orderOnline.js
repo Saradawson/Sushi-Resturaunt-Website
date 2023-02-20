@@ -4,7 +4,7 @@ const initialValues = {
     firstName: '',
     lastName: '',
     phone: '',
-    order: [],
+    order: '',
     total: 0
 }
 const menuItems = [
@@ -34,10 +34,13 @@ function OrderOnline() {
         evt.preventDefault();
         const orders = items.filter((x) => x.ordered)
         let price = 0
+        let orderArr = []
         for(let i = 0; i < orders.length; i++){
-            orderInfo.order.push(orders[i].name)
-            price += parseInt(orders[i].price) 
+            orderArr.push(orders[i].name)
+            price += parseInt(orders[i].price)
         }
+        let orderString = orderArr.toString()
+        orderInfo.order = orderString
         orderInfo.total = price
         console.log(orderInfo)
     }
