@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './comonents/home';
@@ -10,7 +10,10 @@ import ErrorPage from './comonents/errorPage';
 import Orders from './comonents/orders';
 
 function App() {
-
+  const [orders, setOrders] = useState([])
+  const newOrder = (order) => {
+    setOrders([order, ...orders])
+  }
   return (
     <div className="App">
       <Router>
@@ -22,15 +25,16 @@ function App() {
             <Link to='/orderOnline'> Order Online </Link>
             <Link to='/reservations'> Reservations </Link>
             <Link to='/specialOffers'> Special Offers </Link>
+            <Link to='/orders'> Orders </Link>
           </nav>
         </header>
         <Routes>
           <Route path='/' element={<Home />}/>
           <Route path='/menu' element={<Menu />}/>
-          <Route path='/orderOnline' element={<OrderOnline />}/>
+          <Route path='/orderOnline' element={<OrderOnline newOrder={newOrder}/>}/>
           <Route path='/reservations' element={<Reservations />}/>
           <Route path='/specialOffers' element={<SpecialOffers />}/>
-          <Route path='/orders' element={<Orders />} />
+          <Route path='/orders' element={<Orders orders={orders}/>} />
           <Route path='*' element={<ErrorPage />} />
         </Routes>
       </Router>

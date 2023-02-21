@@ -16,7 +16,8 @@ const menuItems = [
     {id: 4, name: 'Creamy Deamy', price: '10.00', ordered: false},
     {id: 5, name: 'Ocean\'s Delight', price: '10.00', ordered: false}
 ]
-function OrderOnline() {
+function OrderOnline(props) {
+    const { newOrder } = props
     const navigate = useNavigate()
     const [orderInfo, setOrderInfo] = useState(initialValues)
     const [items, setItems] = useState(menuItems)
@@ -44,7 +45,8 @@ function OrderOnline() {
         let orderString = orderArr.toString()
         orderInfo.order = orderString
         orderInfo.total = price
-        
+        newOrder(orderInfo)
+        navigate('/orders')
     }
 
     return (
