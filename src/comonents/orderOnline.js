@@ -50,7 +50,7 @@ function OrderOnline(props) {
     }
 
     return (
-        <div className='orderOnline-container'>
+        <div data-style='orderOnline-container'>
                 <form onSubmit={handleSubmit}>
                     <label>First Name</label>
                     <input 
@@ -83,18 +83,18 @@ function OrderOnline(props) {
                         <small>Format: 123-456-7890</small>
                     
                     
-                    <ul>
+                    <ul data-style='checkbox-container'>
                         {items.map((item) => {
                             return(
-                            <li key={item.id}>
-                                <label>{item.name}, {item.price}</label>
+                            <div key={item.id}>
+                                <label>{`${item.name}, $${item.price}`}</label>
                                 <input
                                     type='checkbox'
                                     id={item.id}
                                     checked={item.ordered}
                                     onChange={handleChange}      
                                      />
-                            </li>
+                            </div>
                             )
                         })}
                     </ul>
